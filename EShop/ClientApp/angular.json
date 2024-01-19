@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "EShop"
+  "defaultProject": "EShop",
+  "cli": {
+    "analytics": false
+  }
 }
