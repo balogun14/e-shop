@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ItemService } from '../item.service';
 import { ActivatedRoute } from '@angular/router';
+import { Item } from 'src/app/interface/item';
+import { ItemService } from 'src/app/services/item-services/item.service';
 
 @Component({
   selector: 'app-item-details',
@@ -8,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./item-details.component.css'],
 })
 export class ItemDetailsComponent {
-  item = { id: 0, name: '', price: 0, category: '', description: '' };
+  item: Item = { id: 0, name: '', price: 0, category: '', description: '' };
   constructor(
     private route: ActivatedRoute,
     private itemService: ItemService
