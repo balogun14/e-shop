@@ -14,11 +14,21 @@ export class ItemsComponent {
     public storeService: StoreService
   ) {}
   ngOninit(): void {
+    this.storeService.pageSizeChanges$.subscribe((newPageSize) => {
+      this.storeService.page = 1;
+      this.getItems();
+    });
     this.getItems();
   }
   getItems(): void {
     this.itemService
-      .getItems()
-      .subscribe((items) => (this.storeService.items = items));
+      .getItems(this.storeService.page, this.storeService.pageSize)
+      .subscribe((itemPayload) => {
+        this.storeService.items = itemPayload.items;
+        this.storeService.count = itemPayload.count;
+      });
+  }
+  onPageChange(): void {
+    this.storeService._pageSizeSubject.next(this.storeService.pageSize);
   }
 }
